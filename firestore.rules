@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /entries/{entryId} {
+      // Primeiro protótipo: entre com a mesma conta compartilhada nos dois celulares.
+      // Para restringir o acesso de verdade, substitua a condição por uma lista de UIDs autorizados.
+      allow read, create: if request.auth != null;
+      allow update, delete: if false;
+    }
+  }
+}
