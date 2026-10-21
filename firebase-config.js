@@ -1,10 +1,10 @@
-// Copie os dados do seu app Web Firebase para este arquivo.
-// Firebase Console > Project settings > Your apps > SDK setup and configuration.
+// Configuração do app Web Firebase — Entre Nós.
 export const firebaseConfig = {
-  apiKey: "COLOQUE_SUA_API_KEY_AQUI",
-  authDomain: "SEU_PROJETO.firebaseapp.com",
-  projectId: "SEU_PROJECT_ID",
-  storageBucket: "SEU_PROJETO.firebasestorage.app",
-  messagingSenderId: "SEU_MESSAGING_SENDER_ID",
-  appId: "SEU_APP_ID"
+  apiKey: "AIzaSyDZxS1RdTrClzJluXYhDesTpeAf96dHOMs",
+  authDomain: "entre-nos-f9349.firebaseapp.com",
+  projectId: "entre-nos-f9349",
+  storageBucket: "entre-nos-f9349.firebasestorage.app",
+  messagingSenderId: "321680049883",
+  appId: "1:321680049883:web:b5b5dec52235869c30eefe",
+  measurementId: "G-0H7SZXEH3N"
 };
