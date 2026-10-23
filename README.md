@@ -1,19 +1,16 @@
 # Entre Nós
 
-Site privado de um cantinho compartilhado, hospedado no GitHub Pages e sincronizado com Firebase Authentication + Cloud Firestore.
+Site estático publicado pelo GitHub Pages, com autenticação e sincronização pelo Firebase Authentication + Cloud Firestore.
 
-## Configurar uma vez
+## Publicação
 
-1. Crie um projeto em https://console.firebase.google.com/ (plano Spark).
-2. Em **Authentication > Sign-in method**, ative **Email/Password**.
-3. Em **Firestore Database**, crie o banco de dados.
-4. Em **Project settings > Your apps**, crie um app Web e copie os dados de configuração para `firebase-config.js`.
-5. Publique as regras de `firestore.rules` no Firestore Rules.
-6. Abra **Authentication > Users** e crie uma conta compartilhada pelo site (ou use o botão “criar a conta compartilhada”). Entre com essa mesma conta nos dois aparelhos.
-7. No GitHub, vá em **Settings > Pages** e publique a branch `main`, pasta `/ (root)`.
+No GitHub, abra **Settings → Pages** e configure **Deploy from a branch**, branch `main`, pasta `/(root)`. Os arquivos publicados ficam na raiz do repositório; alterações enviadas à branch `main` são publicadas automaticamente.
 
-## Importante sobre acesso
+## Firebase
 
-As regras iniciais exigem autenticação, mas permitem que qualquer conta autenticada leia o mural. Para um uso privado, configure regras com os UIDs específicos dos usuários autorizados antes de colocar informações pessoais. Não coloque senhas no repositório.
+- Authentication: provedor **Email/Password** habilitado.
+- Firestore: publique as regras de `firestore.rules`.
+- A configuração Web em `firebase-config.js` é usada pelo cliente e não é uma senha nem uma chave de administrador.
+- As regras atuais do Firestore permitem acesso somente à conta com o UID definido em `firestore.rules`. Como a conta é compartilhada, proteja suas credenciais e não publique senhas no repositório.
 
-O mural sincroniza texto e links. Fotos devem ser adicionadas por link nesta primeira versão; upload de arquivos precisa de armazenamento adicional.
+O mural sincroniza texto e links. Fotos são adicionadas por link nesta versão; upload de arquivos exigiria configurar armazenamento adicional.
