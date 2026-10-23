@@ -108,7 +108,7 @@ function render(){
  const muralEntries=entries.filter(e=>e.type!=='garden_item'&&e.type!=='mood');
  const visible=muralEntries.filter(e=>filter==='all'||e.type===filter);
  $('#entryCount').textContent=muralEntries.length+' '+(muralEntries.length===1?'item':'itens');
- if(!visible.length){feed.append(empty);empty.classList.remove('hidden');empty.textContent=muralEntries.length?'Nada nessa categoria ainda.':'Ainda tá quietinho por aqui. Deixa a primeira coisa — pode ser qualquer besteira boa do teu dia.';renderGarden();return}
+ if(!visible.length){feed.append(empty);empty.classList.remove('hidden');empty.textContent=muralEntries.length?'Nada nessa categoria ainda.':'Ainda tá quietinho por aqui. Deixa a primeira coisa — pode ser qualquer besteira boa do teu dia.';renderGarden();renderSpecialFeeds();return}
  empty.classList.add('hidden');
  visible.forEach(e=>{
   const el=document.createElement('article');el.className='entry';
