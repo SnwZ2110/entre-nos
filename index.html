@@ -71,7 +71,7 @@ import { firebaseConfig } from "./firebase-config.js";
 const $=s=>document.querySelector(s);
 const backdrop=$('#modalBackdrop'),feed=$('#feed'),empty=$('#emptyState');
 let entries=[],filter='all',pendingType='note',db,auth,stopListening=null;
-const icons={note:'✎',music:'♫',photo:'▧',drawing:'✿'};\nconst gardenChoices=['🌷','🌼','🌻','🌸','💚','🍄','⭐','🪴','🦋','🐈'];
+const icons={note:'✎',music:'♫',photo:'▧',drawing:'✿'};
 const gate=$('#authGate'), status=$('#syncStatus');
 function setStatus(msg){status.innerHTML='<i></i>'+msg}
 function showAuthError(msg){$('#authError').textContent=msg}
