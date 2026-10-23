@@ -50,7 +50,7 @@
 <div class="shell">
 <header class="top"><div class="brand"><div class="mark">✿</div><div><div class="eyebrow">um cantinho compartilhado</div><h1>entre nós<span style="color:var(--pink)">.</span></h1></div></div><div class="status" id="syncStatus"><i></i>conectando...</div></header>
 <section class="intro"><div><div class="eyebrow">feito pra duas pessoas</div><h2>Um lugarzinho que vai ficando com a nossa cara.</h2><p>Uma foto, uma música, um rabisco ou uma coisa aleatória do dia. Cada pedacinho que vocês deixam aqui vira parte do lugar.</p></div><div class="date-chip">✦ só nosso, no nosso ritmo</div></section>
-<nav class="main-nav" aria-label="Navegação principal"><button class="active" data-view="home">✿ nosso mundo</button><button data-view="photos">▧ fotos</button><button data-view="feelings">♡ sentimentos</button><button data-view="mural">✎ mural</button></nav>
+<nav class="main-nav" aria-label="Navegação principal"><button class="active" data-view="home">✿ nosso mundo</button><button data-view="photos">▧ fotos</button><button data-view="feelings">♡ sentimentos</button><button data-view="mural">✎ mural</button><button data-view="surprises">✧ surpresas</button></nav>
 <section id="view-home" class="view active"><div class="layout">
 <main class="panel"><div class="panel-head"><h3>01 / nosso pequeno mundo</h3><span class="tiny">jardim em construção</span></div>
 <div class="garden-wrap"><div class="garden"><svg viewBox="0 0 640 410" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Jardim pixel art com lago, flores e árvores">
@@ -82,10 +82,12 @@
 </aside></div></section>
 <section id="view-photos" class="view"><section class="panel"><div class="section-title"><h3>Fotos que queremos guardar</h3><span class="tiny">momentos em pedacinhos</span></div><div id="photoFeed" class="feed"><div class="empty">As fotos que vocês adicionarem aparecem aqui ✦</div></div><div class="composer"><button class="btn primary" id="addPhotoFromTab">＋ guardar uma foto</button></div></section></section>
 <section id="view-feelings" class="view"><section class="panel"><div class="section-title"><h3>Como você tá agora?</h3><span class="tiny">sem precisar explicar tudo</span></div><p style="padding:0 14px;color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 12px">Escolhe o que combina contigo hoje — ou inventa teu próprio jeito de dizer.</p><div class="mood-grid"><button class="mood-choice" data-mood="feliz"><span>☀️</span>feliz</button><button class="mood-choice" data-mood="com saudade"><span>🌙</span>com saudade</button><button class="mood-choice" data-mood="cansado(a)"><span>☁️</span>cansado(a)</button><button class="mood-choice" data-mood="ansioso(a)"><span>🫧</span>ansioso(a)</button><button class="mood-choice" data-mood="apaixonado(a)"><span>💗</span>apaixonado(a)</button><button class="mood-choice" data-mood="precisando de carinho"><span>🧸</span>precisando de carinho</button><button class="mood-choice" data-mood="em paz"><span>🍃</span>em paz</button><button class="mood-choice" data-mood="com saudade de você"><span>💌</span>com saudade de você</button><button class="mood-choice" data-mood="não sei explicar"><span>🌫️</span>não sei explicar</button></div><div class="mood-custom"><input id="moodName" maxlength="24" placeholder="teu apelido"><input id="moodCustom" maxlength="100" placeholder="ou escreve do teu jeito..."><button class="btn primary" id="saveCustomMood">guardar meu sentimento ♡</button></div></section><section class="panel" style="margin-top:16px"><div class="section-title"><h3>O que ficou por aqui</h3><span class="tiny">sentimentos compartilhados</span></div><div id="moodFeed" class="feed"><div class="empty">Ainda não tem sentimentos guardados.</div></div></section></section>
-<section id="view-mural" class="view"><section class="panel"><div class="section-title"><h3>Mural de coisas</h3><span class="tiny">notas, músicas e rabiscos</span></div><div class="tabs"><button class="tab active" data-filter="all">tudo</button><button class="tab" data-filter="note">notas</button><button class="tab" data-filter="music">músicas</button><button class="tab" data-filter="photo">fotos</button><button class="tab" data-filter="drawing">rabiscos</button></div><div id="feed" class="feed"><div class="empty" id="emptyState">Ainda tá quietinho por aqui. Deixa a primeira coisa — pode ser qualquer besteira boa do teu dia.</div></div></section></section>
-<div class="footer">feito com calma · sem pressa de virar alguma coisa</div>feito com calma · sem pressa de virar alguma coisa</div>
+<section id="view-mural" class="view"><section class="panel"><div class="section-title"><h3>Mural de coisas</h3><span class="tiny" id="entryCount">0 itens</span></div><div class="tabs"><button class="tab active" data-filter="all">tudo</button><button class="tab" data-filter="note">notas</button><button class="tab" data-filter="music">músicas</button><button class="tab" data-filter="photo">fotos</button><button class="tab" data-filter="drawing">rabiscos</button></div><div id="feed" class="feed"><div class="empty" id="emptyState">Ainda tá quietinho por aqui. Deixa a primeira coisa — pode ser qualquer besteira boa do teu dia.</div></div></section></section>
+<section id="view-surprises" class="view"><div class="layout"><section class="panel"><div class="section-title"><h3>✉ cápsula do tempo</h3></div><p style="padding:0 14px;color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 12px">Escreve algo para o outro abrir numa data especial.</p><div class="composer"><input id="capsuleWho" maxlength="24" placeholder="teu apelido"><textarea id="capsuleText" maxlength="500" placeholder="o que tu quer deixar para o futuro?"></textarea><label class="tiny">Abrir a partir de <input id="capsuleDate" type="date" style="display:block;width:100%;margin-top:6px;background:#132019;border:1px solid #3c5142;border-radius:10px;color:var(--cream);padding:11px"></label><button class="btn primary" id="saveCapsule">guardar cápsula ✦</button></div></section><section class="panel"><div class="section-title"><h3>💌 bilhetinho surpresa</h3></div><p style="padding:0 14px;color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 12px">Deixa uma mensagem escondida atrás de um envelope.</p><div class="composer"><input id="secretWho" maxlength="24" placeholder="teu apelido"><input id="secretTitle" maxlength="70" placeholder="um título (opcional)"><textarea id="secretText" maxlength="500" placeholder="uma mensagem para abrir..."></textarea><button class="btn primary" id="saveSecret">esconder bilhetinho ♡</button></div></section></div><section class="panel" style="margin-top:16px"><div class="section-title"><h3>❔ pergunta do dia</h3><span class="tiny">respondam os dois</span></div><p id="dailyQuestion" style="padding:0 14px;font-family:Georgia,serif;font-size:19px;line-height:1.4">Qual pequeno momento contigo tu queria repetir?</p><div class="composer"><input id="answerWho" maxlength="24" placeholder="teu apelido"><textarea id="answerText" maxlength="400" placeholder="tua resposta..."></textarea><button class="btn primary" id="saveAnswer">guardar resposta</button></div><div id="surpriseFeed" class="feed"><div class="empty">As cápsulas, bilhetinhos e respostas aparecem aqui.</div></div></section></section>
+<div class="footer">feito com calma · sem pressa de virar alguma coisa</div>
 </div>
 <div class="modal-backdrop" id="modalBackdrop"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><h3 id="modalTitle">Deixar alguma coisa</h3><p>Uma lembrança, uma música, uma foto ou uma frase que tu quer dividir.</p><div class="composer"><select id="kind"><option value="note">✎ uma nota</option><option value="music">♫ uma música</option><option value="photo">▧ uma foto por link</option></select><input id="who" maxlength="24" placeholder="teu apelido (ex.: eu)"><input id="title" maxlength="70" placeholder="um título curtinho (opcional)"><textarea id="body" maxlength="500" placeholder="escreve aqui..."></textarea><input id="url" type="url" placeholder="link da música/foto (opcional)"></div><div class="modal-actions"><button class="btn ghost" id="cancel">voltar</button><button class="btn primary" id="save">guardar no mural ✦</button></div></div></div>
+<div class="modal-backdrop" id="gardenBackdrop"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="gardenTitle"><h3 id="gardenTitle">O que vamos plantar? 🌱</h3><p>Toca numa coisinha para colocar no jardim.</p><div class="mood-grid" id="gardenChoices"><button class="mood-choice" data-plant="🌷"><span>🌷</span>tulipa</button><button class="mood-choice" data-plant="🌼"><span>🌼</span>margarida</button><button class="mood-choice" data-plant="🌻"><span>🌻</span>girassol</button><button class="mood-choice" data-plant="💚"><span>💚</span>coração</button><button class="mood-choice" data-plant="🍄"><span>🍄</span>cogumelo</button><button class="mood-choice" data-plant="⭐"><span>⭐</span>estrela</button><button class="mood-choice" data-plant="🪴"><span>🪴</span>plantinha</button><button class="mood-choice" data-plant="🦋"><span>🦋</span>borboleta</button><button class="mood-choice" data-plant="🐈"><span>🐈</span>gatinho</button><button class="mood-choice" data-plant="🌸"><span>🌸</span>flor rosa</button></div><div class="modal-actions"><button class="btn ghost" id="closeGarden">voltar</button></div></div></div>
 <div class="modal-backdrop" id="drawBackdrop"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="drawTitle"><h3 id="drawTitle">Um rabisco de verdade ✎</h3><p>Desenha com o dedo, faz um coração torto, escreve algo ou deixa virar arte abstrata. Não precisa ficar perfeito.</p><div class="draw-tools"><label class="tiny">cor <input id="penColor" type="color" value="#294b36"></label><label class="tiny">traço <input id="penSize" type="range" min="2" max="18" value="5"></label><button class="btn ghost" id="undoDraw">desfazer tudo</button></div><div class="canvas-wrap"><canvas id="drawingCanvas" width="600" height="330"></canvas></div><input id="drawCaption" maxlength="70" placeholder="dá um nome pro rabisco (opcional)" style="width:100%;margin-top:9px;background:#132019;border:1px solid #3c5142;border-radius:10px;color:var(--cream);padding:11px"><div class="modal-actions"><button class="btn ghost" id="cancelDraw">voltar</button><button class="btn primary" id="saveDraw">guardar rabisco ✦</button></div></div></div>
 <div class="toast" id="toast"></div>
 <script type="module">
@@ -122,10 +124,33 @@ function render(){
  renderSpecialFeeds();
 }
 function renderSpecialFeeds(){
+ renderSurprises();
  const photos=entries.filter(e=>e.type==='photo');
  const pf=$('#photoFeed'); if(pf){pf.innerHTML=''; if(!photos.length)pf.innerHTML='<div class="empty">As fotos que vocês adicionarem aparecem aqui ✦</div>'; photos.slice().reverse().forEach(e=>{const el=document.createElement('article');el.className='entry';const image=e.url&&/^https?:/i.test(e.url)?'<a href="'+safe(e.url)+'" target="_blank" rel="noopener noreferrer"><img class="drawing-preview" src="'+safe(e.url)+'" alt="'+safe(e.title||'Foto compartilhada')+'" loading="lazy"></a>':'';el.innerHTML='<div class="entry-body"><strong>'+safe(e.title||'uma foto')+'</strong>'+image+'<p>'+safe(e.body||'')+'</p><small>'+safe(e.who||'alguém')+' · '+safe(e.date||'')+'</small></div>';pf.append(el)})}
  const moods=entries.filter(e=>e.type==='mood').slice().reverse();const mf=$('#moodFeed');if(mf){mf.innerHTML='';if(!moods.length)mf.innerHTML='<div class="empty">Ainda não tem sentimentos guardados. O primeiro pode ser teu. ♡</div>';moods.forEach(e=>{const el=document.createElement('article');el.className='entry';el.innerHTML='<div class="entry-icon">♡</div><div class="entry-body"><strong>'+safe(e.who||'alguém')+'</strong><div class="entry-mood">'+safe(e.title||'como estou hoje')+'</div><p>'+safe(e.body||'')+'</p><small>'+safe(e.date||'')+'</small><div class="entry-tools"><button data-action="delete">× excluir</button></div></div>';el.querySelector('button').onclick=()=>removeEntry(e);mf.append(el)})}
 }
+function renderSurprises(){
+ const box=$('#surpriseFeed');if(!box)return;box.innerHTML='';
+ const items=entries.filter(e=>['capsule','secret','answer'].includes(e.type)).slice().reverse();
+ if(!items.length){box.innerHTML='<div class="empty">Ainda não tem surpresas por aqui. Criem a primeira ✦</div>';return}
+ items.forEach(e=>{
+  const el=document.createElement('article');el.className='entry';
+  const isCapsule=e.type==='capsule',isSecret=e.type==='secret',unlocked=!isCapsule||!e.unlockDate||e.unlockDate<=new Date().toISOString().slice(0,10);
+  const label=isCapsule?'✉ cápsula do tempo':isSecret?'💌 bilhetinho surpresa':'❔ resposta do dia';
+  const hidden=(isCapsule&&!unlocked)||isSecret;
+  el.innerHTML='<div class="entry-icon">'+(isCapsule?'✉':isSecret?'💌':'❔')+'</div><div class="entry-body"><strong>'+safe(label)+'</strong><p>'+safe(e.who||'alguém')+(isCapsule&&e.unlockDate?' · abre em '+safe(e.unlockDate):'')+'</p>'+(hidden?'<button class="btn" data-reveal> '+(isCapsule?'🔒 abrir quando chegar a data':'💌 revelar bilhetinho')+' </button>':'<p>'+safe(e.body||'')+'</p>')+'<div class="entry-tools"><button class="delete" data-remove>× excluir</button></div></div>';
+  const reveal=el.querySelector('[data-reveal]');if(reveal)reveal.onclick=()=>{if(isCapsule&&!unlocked){toast('Essa cápsula ainda está fechada ♡');return}const p=document.createElement('p');p.textContent=e.body||'';reveal.replaceWith(p)};
+  el.querySelector('[data-remove]').onclick=()=>removeEntry(e);box.append(el)
+ })
+}
+async function saveSpecial(type,body,title,who,extra={}){
+ if(!body.trim()){toast('Escreve uma coisinha primeiro ♡');return}
+ try{await addDoc(collection(db,'entries'),{type,body:body.trim(),title:title||'',who:who.trim()||'alguém',date:new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}),createdAt:serverTimestamp(),...extra});toast('Guardado com carinho ✦')}
+ catch(e){console.error(e);toast('Não consegui guardar. Confere a conexão.')}
+}
+$('#saveCapsule').onclick=()=>{const date=$('#capsuleDate').value;if(!date){toast('Escolhe a data para abrir a cápsula.');return}if(date<new Date().toISOString().slice(0,10)){toast('Escolhe hoje ou uma data futura.');return}saveSpecial('capsule',$('#capsuleText').value,'cápsula',$('#capsuleWho').value,{unlockDate:date}).then(()=>{$('#capsuleText').value='';renderSurprises()})};
+$('#saveSecret').onclick=()=>saveSpecial('secret',$('#secretText').value,$('#secretTitle').value||'bilhetinho',$('#secretWho').value).then(()=>{$('#secretText').value='';$('#secretTitle').value='';renderSurprises()});
+$('#saveAnswer').onclick=()=>saveSpecial('answer',$('#answerText').value,$('#dailyQuestion').textContent,$('#answerWho').value).then(()=>{$('#answerText').value='';renderSurprises()});
 function renderGarden(){
  const layer=$('#gardenItems');layer.innerHTML='';
  entries.filter(e=>e.type==='garden_item').forEach(item=>{
@@ -145,19 +170,18 @@ async function editEntry(e){
  catch(err){console.error(err);toast('Não consegui editar. Confere as regras do Firestore.')}
 }
 async function removeEntry(e){
- if(!confirm('Excluir isso do mural? Não dá pra desfazer.'))return;
  try{await deleteDoc(doc(db,'entries',e.id));toast('Excluído do mural ✦')}
  catch(err){console.error(err);toast('Não consegui excluir. Confere as regras do Firestore.')}
 }
-async function addGardenThing(){
- const choice=prompt('O que vamos colocar no jardim?\\n1 🌷 flor\\n2 🌼 margarida\\n3 🌻 girassol\\n4 💚 coração\\n5 🍄 cogumelo\\n6 ⭐ estrela\\n7 🪴 plantinha\\n8 🦋 borboleta\\n9 🐈 gatinho\\n10 🌸 flor rosa\\n\\nDigita o número:');
- if(choice===null)return;
- const map={'1':'🌷','2':'🌼','3':'🌻','4':'💚','5':'🍄','6':'⭐','7':'🪴','8':'🦋','9':'🐈','10':'🌸'};
- const decoration=map[choice.trim()];
- if(!decoration){toast('Escolhe um número de 1 a 10 🙂');return}
- try{await addDoc(collection(db,'entries'),{type:'garden_item',body:decoration,x:12+Math.random()*76,y:18+Math.random()*67,who:$('#who').value.trim()||'alguém',createdAt:serverTimestamp()});toast('Coisinha plantada no jardim 🌱')}
- catch(err){console.error(err);toast('Não consegui decorar. Confere as regras do Firestore.')}
+const gardenBackdrop=$('#gardenBackdrop');
+async function plantThing(decoration){
+ try{await addDoc(collection(db,'entries'),{type:'garden_item',body:decoration,x:12+Math.random()*76,y:18+Math.random()*67,who:$('#who').value.trim()||$('#moodName').value.trim()||'alguém',createdAt:serverTimestamp()});gardenBackdrop.classList.remove('open');toast('Plantado no jardim 🌱')}
+ catch(err){console.error(err);toast('Não consegui plantar. Confere a conexão.')}
 }
+$('#gardenBtn').onclick=()=>gardenBackdrop.classList.add('open');
+$('#closeGarden').onclick=()=>gardenBackdrop.classList.remove('open');
+gardenBackdrop.addEventListener('click',e=>{if(e.target===gardenBackdrop)gardenBackdrop.classList.remove('open')});
+document.querySelectorAll('[data-plant]').forEach(b=>b.onclick=()=>plantThing(b.dataset.plant));
 function openModal(type='note'){pendingType=type;$('#kind').value=type;$('#title').value='';$('#body').value='';$('#url').value='';backdrop.classList.add('open');$('#body').focus()}
 async function saveEntry(type,body,title='',url=''){
  if(!body.trim()&&!url.trim()){toast('Escreve alguma coisinha ou coloca um link 🙂');return}
@@ -188,7 +212,7 @@ $('#createAccountBtn').onclick=async()=>{
  try{await createUserWithEmailAndPassword(auth,$('#authEmail').value.trim(),$('#authPassword').value)}
  catch(e){showAuthError(mapAuthError(e))}
 };
-$('#addThing').onclick=()=>openModal();$('#gardenBtn').onclick=addGardenThing;$('#cancel').onclick=()=>backdrop.classList.remove('open');backdrop.onclick=e=>{if(e.target===backdrop)backdrop.classList.remove('open')};
+$('#addThing').onclick=()=>openModal();$('#cancel').onclick=()=>backdrop.classList.remove('open');backdrop.onclick=e=>{if(e.target===backdrop)backdrop.classList.remove('open')};
 $('#kind').onchange=e=>{const t=e.target.value;$('#url').placeholder=t==='music'?'link da música (Spotify, YouTube...)':t==='photo'?'link da foto (opcional)':'link (opcional)';$('#body').placeholder=t==='music'?'por que essa música? ou deixa uma frase...':t==='photo'?'o que tu quer guardar dessa foto?':'escreve aqui...'};
 $('#save').onclick=()=>saveEntry($('#kind').value,$('#body').value,$('#title').value,$('#url').value);
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;render()});
@@ -208,7 +232,7 @@ document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{document.quer
 $('#goFeelings').onclick=()=>document.querySelector('[data-view="feelings"]').click();
 document.querySelectorAll('[data-mood]').forEach(b=>b.onclick=()=>saveMood(b.dataset.mood,''));
 $('#saveCustomMood').onclick=()=>{const custom=$('#moodCustom').value.trim();if(!custom){toast('Escreve como tu tá se sentindo ♡');return}saveMood('do meu jeito',custom)};
-async function saveMood(label,detail){const who=$('#moodName').value.trim()||$('#who').value.trim()||'alguém';try{await addDoc(collection(db,'entries'),{type:'mood',title:label,body:detail,who,date:new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}),createdAt:serverTimestamp()});$('#moodCustom').value='';toast('Sentimento guardado com carinho ♡')}catch(e){console.error(e);toast('Não consegui guardar. Confere a conexão.')}}
+async function saveMood(label,detail){const who=$('#moodName').value.trim()||$('#who').value.trim()||'eu';try{await addDoc(collection(db,'entries'),{type:'mood',title:label,body:detail,who,date:new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}),createdAt:serverTimestamp()});$('#moodCustom').value='';toast('Sentimento guardado com carinho ♡')}catch(e){console.error(e);toast('Não consegui guardar. Confere a conexão.')}}
 try{
  if(!firebaseConfig || !firebaseConfig.apiKey || firebaseConfig.apiKey==='COLOQUE_SUA_API_KEY_AQUI') throw new Error('CONFIG_MISSING');
  const app=initializeApp(firebaseConfig);auth=getAuth(app);db=getFirestore(app);
