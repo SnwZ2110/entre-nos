@@ -155,19 +155,14 @@ function renderGarden(){
  const layer=$('#gardenItems');layer.innerHTML='';
  entries.filter(e=>e.type==='garden_item').forEach(item=>{
   const b=document.createElement('button');b.className='garden-decoration';b.textContent=item.body||'🌷';b.title='Toca para retirar do jardim';b.setAttribute('aria-label','Retirar '+(item.body||'decoração')+' do jardim');b.style.left=(Number(item.x)||50)+'%';b.style.top=(Number(item.y)||50)+'%';
-  b.onclick=async()=>{if(confirm('Tirar essa coisinha do jardim?'))try{await deleteDoc(doc(db,'entries',item.id));toast('Decoração retirada ✦')}catch(err){console.error(err);toast('Não consegui retirar essa decoração.')}};
+  b.onclick=async()=>{try{await deleteDoc(doc(db,'entries',item.id));toast('Decoração retirada ✦')}catch(err){console.error(err);toast('Não consegui retirar essa decoração.')}};
   layer.append(b);
  });
 }
-async function editEntry(e){
- const title=prompt('Editar título:',e.title||'');
- if(title===null)return;
- const body=prompt('Editar texto:',e.body||'');
- if(body===null)return;
- const url=prompt('Editar link (deixa vazio se não tiver):',e.url||'');
- if(url===null)return;
- try{await updateDoc(doc(db,'entries',e.id),{title:title.trim(),body:body.trim(),url:url.trim()});toast('Atualizado ✦')}
- catch(err){console.error(err);toast('Não consegui editar. Confere as regras do Firestore.')}
+let editingEntryId=null;
+function editEntry(e){
+ if(e.type==='drawing'&&String(e.body||'').startsWith('data:image/')){toast('Rabiscos ficam como lembrança; cria outro se quiser mudar ✎');return}
+ editingEntryId=e.id;$('#kind').value=e.type;$('#title').value=e.title||'';$('#body').value=e.body||'';$('#url').value=e.url||'';$('#who').value=e.who||'';$('#modalTitle').textContent='Editar lembrança';backdrop.classList.add('open');$('#body').focus()
 }
 async function removeEntry(e){
  try{await deleteDoc(doc(db,'entries',e.id));toast('Excluído do mural ✦')}
@@ -182,14 +177,16 @@ $('#gardenBtn').onclick=()=>gardenBackdrop.classList.add('open');
 $('#closeGarden').onclick=()=>gardenBackdrop.classList.remove('open');
 gardenBackdrop.addEventListener('click',e=>{if(e.target===gardenBackdrop)gardenBackdrop.classList.remove('open')});
 document.querySelectorAll('[data-plant]').forEach(b=>b.onclick=()=>plantThing(b.dataset.plant));
-function openModal(type='note'){pendingType=type;$('#kind').value=type;$('#title').value='';$('#body').value='';$('#url').value='';backdrop.classList.add('open');$('#body').focus()}
+function openModal(type='note'){editingEntryId=null;pendingType=type;$('#modalTitle').textContent='Deixar alguma coisa';$('#kind').value=type;$('#title').value='';$('#body').value='';$('#url').value='';backdrop.classList.add('open');$('#body').focus()}
 async function saveEntry(type,body,title='',url=''){
  if(!body.trim()&&!url.trim()){toast('Escreve alguma coisinha ou coloca um link 🙂');return}
  if(!auth?.currentUser){toast('Entra na conta compartilhada primeiro.');return}
  try{
-  await addDoc(collection(db,'entries'),{type,body:body.trim(),title:title.trim(),url:url.trim(),who:$('#who').value.trim()||'alguém',date:new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}),createdAt:serverTimestamp()});
-  backdrop.classList.remove('open');toast('Guardado no cantinho de vocês ✦')
- }catch(e){console.error(e);toast('Não consegui guardar. Confere a configuração do Firebase.')}
+  const data={type,body:body.trim(),title:title.trim(),url:url.trim(),who:$('#who').value.trim()||'eu',date:new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})};
+  if(editingEntryId){await updateDoc(doc(db,'entries',editingEntryId),data);editingEntryId=null;$('#modalTitle').textContent='Deixar alguma coisa';toast('Atualizado ✦')}
+  else{await addDoc(collection(db,'entries'),{...data,createdAt:serverTimestamp()});toast('Guardado no cantinho de vocês ✦')}
+  backdrop.classList.remove('open')
+ }catch(e){console.error(e);toast('Não consegui guardar. Confere a conexão e as regras do Firebase.')}
 }
 function startApp(){
  const q=query(collection(db,'entries'),orderBy('createdAt','asc'));
@@ -212,7 +209,7 @@ $('#createAccountBtn').onclick=async()=>{
  try{await createUserWithEmailAndPassword(auth,$('#authEmail').value.trim(),$('#authPassword').value)}
  catch(e){showAuthError(mapAuthError(e))}
 };
-$('#addThing').onclick=()=>openModal();$('#cancel').onclick=()=>backdrop.classList.remove('open');backdrop.onclick=e=>{if(e.target===backdrop)backdrop.classList.remove('open')};
+$('#addThing').onclick=()=>openModal();$('#cancel').onclick=()=>{backdrop.classList.remove('open');editingEntryId=null;$('#modalTitle').textContent='Deixar alguma coisa'};backdrop.onclick=e=>{if(e.target===backdrop)backdrop.classList.remove('open')};
 $('#kind').onchange=e=>{const t=e.target.value;$('#url').placeholder=t==='music'?'link da música (Spotify, YouTube...)':t==='photo'?'link da foto (opcional)':'link (opcional)';$('#body').placeholder=t==='music'?'por que essa música? ou deixa uma frase...':t==='photo'?'o que tu quer guardar dessa foto?':'escreve aqui...'};
 $('#save').onclick=()=>saveEntry($('#kind').value,$('#body').value,$('#title').value,$('#url').value);
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;render()});
